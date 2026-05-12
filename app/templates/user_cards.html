@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Library Collection</h2>
+    </div>
+
+    <form class="d-flex mb-4" method="GET" action="{{ url_for('main.home') }}">
+        <input class="form-control me-2" type="search" name="search" placeholder="Search title, author, or ISBN..." value="{{ search_query }}">
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+
+    <div class="row">
+        {% for book in books %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <img src="{{ book.cover_image }}" class="card-img-top" alt="{{ book.title }}"
+                    style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">{{ book.title }}</h5>
+                    <p class="text-muted mb-1"><strong>Author:</strong> {{ book.author }}</p>
+                    <p class="small text-secondary"><strong>ISBN:</strong> {{ book.isbn }}</p>
+                    
+                    <hr>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
